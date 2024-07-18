@@ -7,6 +7,12 @@
     <title>Complete Responsive Personal Portfolio Website HTML CSS Javascript | Codehal</title>
 
     <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script type="text/javascript">
+      (function() {
+        emailjs.init("fOol5b3grRqMqO6aI"); // Ganti dengan User ID EmailJS kamu
+      })();
+    </script>
 
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   </head>
@@ -211,7 +217,7 @@
     <section class="contact" id="contact">
       <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i: 1"></span></h2>
     
-      <form action="Responsive_Website/submit.php" method="POST">
+      <form id="contact-form" onsubmit="sendEmail(); resetForm(); return false;">
         <div class="input-box">
           <div class="input-field">
             <input type="text" name="name" placeholder="Full Name" required />
@@ -250,6 +256,7 @@
         </div>
       </form>
     </section>
+   
     
 
     <footer class="footer">
@@ -267,5 +274,8 @@
     </footer>
 
     <script src="script.js"></script>
+
+    
+    </script>
   </body>
 </html>
