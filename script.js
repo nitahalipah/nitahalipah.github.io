@@ -72,26 +72,3 @@ function resetAnimation(element) {
 
   footer.classList.toggle("show-animate", this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
 }
-
-function sendEmail() {
-  let templateParams = {
-    name: document.querySelector('input[name="name"]').value,
-    email: document.querySelector('input[name="email"]').value,
-    phone: document.querySelector('input[name="phone"]').value,
-    subject: document.querySelector('input[name="subject"]').value,
-    message: document.querySelector('textarea[name="message"]').value,
-  };
-
-  emailjs.send('service_dzj9d7f', 'template_pik0m5e', templateParams)
-    .then(function(response) {
-      console.log('SUCCESS!', response.status, response.text);
-      window.location.href = 'thank_you.html';
-    }, function(error) {
-      console.log('FAILED...', error);
-    });
-}
-
-function resetForm() {
-  document.getElementById('contact-form').reset();
-}
-
