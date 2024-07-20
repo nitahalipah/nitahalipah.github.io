@@ -4,15 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Complete Responsive Personal Portfolio Website HTML CSS Javascript | Codehal</title>
+    <title>Complete Responsive Personal Portfolio Website HTML CSS & Javascript | Codehal</title>
 
-    <link rel="stylesheet" href="style.css" />
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script type="text/javascript">
-      (function() {
-        emailjs.init("fOol5b3grRqMqO6aI"); // Ganti dengan User ID EmailJS kamu
-      })();
-    </script>
+    <link rel="stylesheet" href="static/style.css">
 
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   </head>
@@ -214,52 +208,53 @@
       </div>
     </section>
 
-    <section class="contact" id="contact">
-      <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i: 1"></span></h2>
+<section class="contact" id="contact">
+  <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i: 1"></span></h2>
 
-      <form action="send_email.php" method="POST">
-        <div class="input-box">
+  <form action="/submit" method="post">
+      <div class="input-box">
           <div class="input-field">
-            <input type="text" id="nama" name="nama" placeholder="Full Name" required />
-            <span class="focus"></span>
+              <input type="text" name="name" placeholder="Full Name" required />
+              <span class="focus"></span>
           </div>
 
           <div class="input-field">
-            <input type="text" id="email" name="email" placeholder="Email Adress" required />
-            <span class="focus"></span>
+              <input type="email" name="email" placeholder="Email Address" required />
+              <span class="focus"></span>
           </div>
           <span><span class="animate scroll" style="--i: 3"></span>
-        </div>
+      </div>
 
-        <div class="input-box">
+      <div class="input-box">
           <div class="input-field">
-            <input type="number" id="nomor" name="nomor" placeholder="Mobile Number" required />
-            <span class="focus"></span>
+              <input type="number" name="phone" placeholder="Mobile Number" required />
+              <span class="focus"></span>
           </div>
 
           <div class="input-field">
-            <input type="text" id="subjek" name="subjek" placeholder="Email Subject" required />
-            <span class="focus"></span>
+              <input type="text" name="subject" placeholder="Email Subject" required />
+              <span class="focus"></span>
           </div>
           </span><span class="animate scroll" style="--i: 5"></span>
-        </div>
+      </div>
 
-        <div class="textarea-field">
-          <textarea name="pesan" id="pesan" cols="30" rows="10" placeholder="Your Message" required></textarea>
+      <div class="textarea-field">
+          <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
           <span class="focus"></span>
 
           </span><span class="animate scroll" style="--i: 7"></span>
-        </div>
+      </div>
 
-        <div class="btn-box btsn">
+      <div class="btn-box btsn">
           <button type="submit" class="btn">Submit</button>
 
           </span><span class="animate scroll" style="--i: 9"></span>
-        </div>
-      </form>
-    </section>
-   
+      </div>
+  </form>
+</section>
+
     
+   
 
     <footer class="footer">
       <div class="footer-text">
