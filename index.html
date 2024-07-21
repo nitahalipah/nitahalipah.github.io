@@ -269,6 +269,10 @@
                     <td>{{ message.phone }}</td>
                     <td>{{ message.subject }}</td>
                     <td>{{ message.message }}</td>
+                    <td>
+                      <a href="{{ url_for('edit', index=loop.index) }}">Edit</a> |
+                      <a href="{{ url_for('delete', index=loop.index) }}" onclick="return confirm('Kamu yakin mau menghapus ini?');">Delete</a>
+                  </td>
                 </tr>
                 {% endfor %}
             </table>
