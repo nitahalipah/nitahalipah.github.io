@@ -209,9 +209,7 @@
         <section class="contact" id="contact">
             <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i: 1"></span></h2>
     
-            {% if success %}
-            <p>Pesan Anda telah berhasil terkirim!</p>
-            {% endif %}
+        
     
             <form action="/submit" method="post">
                 <div class="input-box">
@@ -252,31 +250,7 @@
                 </div>
             </form>
     
-            {% if success %}
-            <h3>Data yang Dikirim</h3>
-            <table>
-                <tr>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Telepon</th>
-                    <th>Subjek</th>
-                    <th>Pesan</th>
-                </tr>
-                {% for message in messages %}
-                <tr>
-                    <td>{{ message.name }}</td>
-                    <td>{{ message.email }}</td>
-                    <td>{{ message.phone }}</td>
-                    <td>{{ message.subject }}</td>
-                    <td>{{ message.message }}</td>
-                    <td>
-                      <a href="{{ url_for('edit', index=loop.index) }}">Edit</a> |
-                      <a href="{{ url_for('delete', index=loop.index) }}" onclick="return confirm('Kamu yakin mau menghapus ini?');">Delete</a>
-                  </td>
-                </tr>
-                {% endfor %}
-            </table>
-            {% endif %}
+            
         </section>
     
 
