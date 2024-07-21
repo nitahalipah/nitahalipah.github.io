@@ -74,4 +74,3 @@ function resetAnimation(element) {
     footer.classList.toggle("show-animate", this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
   }
 }
-
