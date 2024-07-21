@@ -70,5 +70,7 @@ function resetAnimation(element) {
 
   let footer = document.querySelector("footer");
 
-  footer.classList.toggle("show-animate", this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
+  if (footer) {
+    footer.classList.toggle("show-animate", this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
+  }
 }

@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Complete Responsive Personal Portfolio Website HTML CSS & Javascript | Codehal</title>
 
-    <link rel="stylesheet" href="style.css">
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   </head>
   <body>
@@ -22,7 +21,6 @@
         <a href="#education">Education</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
-
         <span class="active-nav"></span>
         <span class="animate" style="--i: 2"></span>
       </nav>
@@ -61,7 +59,7 @@
     <section class="about" id="about">
       <h2 class="heading">About <span>Me</span> !<span class="animate scroll" style="--i: 1"></span></h2>
       <div class="about-img">
-        <img src="images/ayenabout.jpg" alt="" />
+        <img src="{{ url_for('static', filename='images/ayenabout.jpg') }}" alt="Ayen About">
         <span class="circle-spin"></span>
         <span class="animate scroll" style="--i: 2"></span>
       </div>
@@ -208,53 +206,75 @@
       </div>
     </section>
 
-<section class="contact" id="contact">
-  <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i: 1"></span></h2>
-
-  <form action="/submit" method="post">
-      <div class="input-box">
-          <div class="input-field">
-              <input type="text" name="name" placeholder="Full Name" required />
-              <span class="focus"></span>
-          </div>
-
-          <div class="input-field">
-              <input type="email" name="email" placeholder="Email Address" required />
-              <span class="focus"></span>
-          </div>
-          <span><span class="animate scroll" style="--i: 3"></span>
-      </div>
-
-      <div class="input-box">
-          <div class="input-field">
-              <input type="number" name="phone" placeholder="Mobile Number" required />
-              <span class="focus"></span>
-          </div>
-
-          <div class="input-field">
-              <input type="text" name="subject" placeholder="Email Subject" required />
-              <span class="focus"></span>
-          </div>
-          </span><span class="animate scroll" style="--i: 5"></span>
-      </div>
-
-      <div class="textarea-field">
-          <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
-          <span class="focus"></span>
-
-          </span><span class="animate scroll" style="--i: 7"></span>
-      </div>
-
-      <div class="btn-box btsn">
-          <button type="submit" class="btn">Submit</button>
-
-          </span><span class="animate scroll" style="--i: 9"></span>
-      </div>
-  </form>
-</section>
-
+        <section class="contact" id="contact">
+            <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i: 1"></span></h2>
     
-   
+            {% if success %}
+            <p>Pesan Anda telah berhasil terkirim!</p>
+            {% endif %}
+    
+            <form action="/submit" method="post">
+                <div class="input-box">
+                    <div class="input-field">
+                        <input type="text" name="name" placeholder="Full Name" required />
+                        <span class="focus"></span>
+                    </div>
+    
+                    <div class="input-field">
+                        <input type="email" name="email" placeholder="Email Address" required />
+                        <span class="focus"></span>
+                    </div>
+                    <span><span class="animate scroll" style="--i: 3"></span></span>
+                </div>
+    
+                <div class="input-box">
+                    <div class="input-field">
+                        <input type="number" name="phone" placeholder="Mobile Number" required />
+                        <span class="focus"></span>
+                    </div>
+    
+                    <div class="input-field">
+                        <input type="text" name="subject" placeholder="Email Subject" required />
+                        <span class="focus"></span>
+                    </div>
+                    <span><span class="animate scroll" style="--i: 5"></span></span>
+                </div>
+    
+                <div class="textarea-field">
+                    <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
+                    <span class="focus"></span>
+                    <span class="animate scroll" style="--i: 7"></span>
+                </div>
+    
+                <div class="btn-box btsn">
+                    <button type="submit" class="btn">Submit</button>
+                    <span class="animate scroll" style="--i: 9"></span>
+                </div>
+            </form>
+    
+            {% if success %}
+            <h3>Data yang Dikirim</h3>
+            <table>
+                <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Telepon</th>
+                    <th>Subjek</th>
+                    <th>Pesan</th>
+                </tr>
+                {% for message in messages %}
+                <tr>
+                    <td>{{ message.name }}</td>
+                    <td>{{ message.email }}</td>
+                    <td>{{ message.phone }}</td>
+                    <td>{{ message.subject }}</td>
+                    <td>{{ message.message }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </section>
+    
 
     <footer class="footer">
       <div class="footer-text">
@@ -270,8 +290,6 @@
       </div>
     </footer>
 
-    <script src="script.js"></script>
-
-    </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>

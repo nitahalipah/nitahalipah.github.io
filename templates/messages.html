@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages - Nita Halipah</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <header class="header">
+        <!-- Header content (same as in index.html) -->
+    </header>
+
+    <section class="messages" id="messages">
+        <h2 class="heading">Data yang Terkirim</h2>
+
+        <table>
+            <table id="messages-table">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Telepon</th>
+                    <th>Subjek</th>
+                    <th>Pesan</th>
+                    <th>Keterangan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in messages %}
+                <tr>
+                    <td>{{ message.name }}</td>
+                    <td>{{ message.email }}</td>
+                    <td>{{ message.phone }}</td>
+                    <td>{{ message.subject }}</td>
+                    <td>{{ message.message }}</td>
+                    <td>
+                        <a href="{{ url_for('edit', index=loop.index) }}">Edit</a> |
+                        <a href="{{ url_for('delete', index=loop.index) }}" onclick="return confirm('Kamu yakin mau menghapus ini?');">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="btn-box">
+            <a href="{{ url_for('index') }}" class="btn">kembali</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <!-- Footer content (same as in index.html) -->
+    </footer>
+</body>
+</html>
