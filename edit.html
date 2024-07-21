@@ -5,30 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Pesan</title>
     <link rel="stylesheet" href="static/style.css">
+
 </head>
 <body>
     <div class="edit">
         <h2>Edit Pesan</h2>
-        <form action="/edit/1" method="post">
+        <form action="{{ url_for('edit', index=index) }}" method="post">
             <div class="input-box">
                 <label for="name">Nama:</label>
-                <input type="text" id="name" name="name" value="Nama Contoh" required />
+                <input type="text" id="name" name="name" value="{{ message.name }}" required />
             </div>
             <div class="input-box">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" value="contoh@email.com" required />
+                <input type="email" id="email" name="email" value="{{ message.email }}" required />
             </div>
             <div class="input-box">
                 <label for="phone">Telepon:</label>
-                <input type="text" id="phone" name="phone" value="1234567890" required />
+                <input type="text" id="phone" name="phone" value="{{ message.phone }}" required />
             </div>
             <div class="input-box">
                 <label for="subject">Subjek:</label>
-                <input type="text" id="subject" name="subject" value="Subjek Contoh" required />
+                <input type="text" id="subject" name="subject" value="{{ message.subject }}" required />
             </div>
             <div class="input-box">
                 <label for="message">Pesan:</label>
-                <textarea id="message" name="message" rows="4" required>Pesan Contoh</textarea>
+                <textarea id="message" name="message" rows="4" required>{{ message.message }}</textarea>
             </div>
             <div class="btn-box">
                 <button type="submit">Update</button>
