@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Complete Responsive Personal Portfolio Website HTML CSS & Javascript | Codehal</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="static/style.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   </head>
   <body>
@@ -59,7 +59,7 @@
     <section class="about" id="about">
       <h2 class="heading">About <span>Me</span> !<span class="animate scroll" style="--i: 1"></span></h2>
       <div class="about-img">
-        <img src="{{ url_for('static', filename='images/ayenabout.jpg') }}" alt="Ayen About">
+        <img src="static/images/ayenabout.jpg" alt="Home Image">
         <span class="circle-spin"></span>
         <span class="animate scroll" style="--i: 2"></span>
       </div>
@@ -290,6 +290,6 @@
       </div>
     </footer>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="static/script.js" defer></script>
   </body>
 </html>
