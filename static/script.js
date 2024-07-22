@@ -59,22 +59,6 @@ window.onscroll = () => {
   navbar.classList.remove("active");
 };
 
-document.getElementById("contact-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-  var form = e.target;
-  var data = new FormData(form);
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", form.action);
-  xhr.onload = function() {
-    if (xhr.status === 200) {
-      window.location.href = "messages.html";
-    } else {
-      alert("Error: " + xhr.responseText);
-    }
-  };
-  xhr.send(data);
-});
-
 
 function resetAnimation(element) {
   element.classList.remove("show-animate");
@@ -91,3 +75,19 @@ function resetAnimation(element) {
     footer.classList.toggle("show-animate", this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
   }
 }
+
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  var form = e.target;
+  var data = new FormData(form);
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", form.action);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      window.location.href = "messages.html";
+    } else {
+      alert("Error: " + xhr.responseText);
+    }
+  };
+  xhr.send(data);
+});
