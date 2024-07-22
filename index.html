@@ -214,49 +214,38 @@
 
     <section class="contact" id="contact">
       <h2 class="heading">Contact <span>Me!</span><span class="animate scroll" style="--i: 1"></span></h2>
-
-      <form action="#">
+    
+      <form id="contact-form" action="https://script.google.com/macros/s/AKfycbz87dmgZ_QEXX-vmrGP7S5a9ynNrF2XIWcm2owjoezNybNOwIF16s8bCEq857oROvQu5A/exec" method="POST">
         <div class="input-box">
           <div class="input-field">
-            <input type="text" placeholder="Full Name" required />
+            <input type="text" name="name" placeholder="Full Name" required />
             <span class="focus"></span>
           </div>
-
           <div class="input-field">
-            <input type="text" placeholder="Email Adress" required />
+            <input type="text" name="email" placeholder="Email Adress" required />
             <span class="focus"></span>
           </div>
-          <span><span class="animate scroll" style="--i: 3"></span>
         </div>
-
         <div class="input-box">
           <div class="input-field">
-            <input type="number" placeholder="Mobile Number" required />
+            <input type="number" name="phone" placeholder="Mobile Number" required />
             <span class="focus"></span>
           </div>
-
           <div class="input-field">
-            <input type="text" placeholder="Email Subject" required />
+            <input type="text" name="subject" placeholder="Email Subject" required />
             <span class="focus"></span>
           </div>
-          </span><span class="animate scroll" style="--i: 5"></span>
         </div>
-
         <div class="textarea-field">
-          <textarea name="" id="" cols="30" rows="10" placeholder="Your Message" required></textarea>
+          <textarea name="message" cols="30" rows="10" placeholder="Your Message" required></textarea>
           <span class="focus"></span>
-
-          </span><span class="animate scroll" style="--i: 7"></span>
         </div>
-
-        <div class="btn-box btsn">
+        <div class="btn-box">
           <button type="submit" class="btn">Submit</button>
-
-          </span><span class="animate scroll" style="--i: 9"></span>
         </div>
-      </form>
+      </form>      
     </section>
-
+    
     <footer class="footer">
       <div class="footer-text">
         <p>Copyright &copy; 2023 by Codehal | All Rights Reserved.</p>

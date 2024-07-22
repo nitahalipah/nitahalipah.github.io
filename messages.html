@@ -1,55 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Messages - Nita Halipah</title>
-    <link rel="stylesheet" href="static/style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages - Nita Halipah</title>
+  <link rel="stylesheet" href="static/style.css">
 </head>
 <body>
-    <header class="header">
-        <!-- Header content (same as in index.html) -->
-    </header>
-
-    <section class="messages" id="messages">
-        <h2 class="heading">Data yang Terkirim</h2>
-
-        <table>
-            <table id="messages-table">
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Email</th>
-                    <th>Telepon</th>
-                    <th>Subjek</th>
-                    <th>Pesan</th>
-                    <th>Keterangan</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for message in messages %}
-                <tr>
-                    <td>{{ message.name }}</td>
-                    <td>{{ message.email }}</td>
-                    <td>{{ message.phone }}</td>
-                    <td>{{ message.subject }}</td>
-                    <td>{{ message.message }}</td>
-                    <td>
-                        <a href="{{ url_for('edit', index=loop.index) }}">Edit</a> |
-                        <a href="{{ url_for('delete', index=loop.index) }}" onclick="return confirm('Kamu yakin mau menghapus ini?');">Delete</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <div class="btn-box">
-            <a href="index.html" class="back-button">Kembali ke Home</a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <!-- Footer content (same as in index.html) -->
-    </footer>
+  <header class="header">
+    <!-- Header content (same as in index.html) -->
+  </header>
+  <section class="messages" id="messages">
+    <h2 class="heading">Data yang Terkirim</h2>
+    <table id="messages-table">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Email</th>
+          <th>Telepon</th>
+          <th>Subjek</th>
+          <th>Pesan</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data will be populated here by JavaScript -->
+      </tbody>
+    </table>
+    <div class="btn-box">
+      <a href="index.html" class="back-button">Kembali ke Home</a>
+    </div>
+  </section>
+  <footer class="footer">
+    <!-- Footer content (same as in index.html) -->
+  </footer>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://script.google.com/macros/s/AKfycbz87dmgZ_QEXX-vmrGP7S5a9ynNrF2XIWcm2owjoezNybNOwIF16s8bCEq857oROvQu5A/exec");
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          var data = xhr.responseText.split("\n").filter(row => row.trim().length > 0);
+          var tableBody = document.querySelector("#messages-table tbody");
+          data.forEach(row => {
+            var cols = row.split(",");
+            var tr = document.createElement("tr");
+            cols.forEach(col => {
+              var td = document.createElement("td");
+              td.textContent = col.trim();
+              tr.appendChild(td);
+            });
+            tableBody.appendChild(tr);
+          });
+        } else {
+          alert("Error: " + xhr.responseText);
+        }
+      };
+      xhr.send();
+    });
+  </script>
 </body>
 </html>
