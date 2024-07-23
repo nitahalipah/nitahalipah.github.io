@@ -8,18 +8,19 @@
 </head>
 <body>
   <header class="header">
-    <!-- Header content (same as in index.html) -->
+    <!-- Header content -->
   </header>
   <section class="messages" id="messages">
     <h2 class="heading">Data yang Terkirim</h2>
     <table id="messages-table">
       <thead>
         <tr>
-          <th>Nama</th>
-          <th>Email</th>
-          <th>Telepon</th>
-          <th>Subjek</th>
-          <th>Pesan</th>
+          <th>Full Name</th>
+          <th>Email Adress</th>
+          <th>Mobile Number</th>
+          <th>Email Subject</th>
+          <th>Your Message</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -31,31 +32,73 @@
     </div>
   </section>
   <footer class="footer">
-    <!-- Footer content (same as in index.html) -->
+    <!-- Footer content -->
   </footer>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      var xhr = new XMLHttpRequest();
-      xhr.open("GET", "https://script.google.com/macros/s/AKfycbz87dmgZ_QEXX-vmrGP7S5a9ynNrF2XIWcm2owjoezNybNOwIF16s8bCEq857oROvQu5A/exec");
-      xhr.onload = function() {
-        if (xhr.status === 200) {
-          var data = xhr.responseText.split("\n").filter(row => row.trim().length > 0);
+      fetch('https://script.google.com/macros/s/AKfycbxEIjL8hJDZzfQTz9qzbGDJP6FSvKVPWO73l_U42aRGdLiuKg3PMOMezhXb4rLn50KeXg/exec?action=get')
+        .then(response => response.json())
+        .then(data => {
           var tableBody = document.querySelector("#messages-table tbody");
           data.forEach(row => {
-            var cols = row.split(",");
             var tr = document.createElement("tr");
-            cols.forEach(col => {
-              var td = document.createElement("td");
-              td.textContent = col.trim();
-              tr.appendChild(td);
-            });
+            // Ensure the data is displayed in the correct columns
+            var id = row[0];
+            var name = row[1];
+            var email = row[2];
+            var phone = row[3];
+            var subject = row[4];
+            var message = row[5];
+            
+            // Create table cells
+            var nameTd = document.createElement("td");
+            nameTd.textContent = name;
+            tr.appendChild(nameTd);
+            
+            var emailTd = document.createElement("td");
+            emailTd.textContent = email;
+            tr.appendChild(emailTd);
+            
+            var phoneTd = document.createElement("td");
+            phoneTd.textContent = phone;
+            tr.appendChild(phoneTd);
+            
+            var subjectTd = document.createElement("td");
+            subjectTd.textContent = subject;
+            tr.appendChild(subjectTd);
+            
+            var messageTd = document.createElement("td");
+            messageTd.textContent = message;
+            tr.appendChild(messageTd);
+            
+            var actionTd = document.createElement("td");
+            var editButton = document.createElement("button");
+            editButton.textContent = "Edit";
+            editButton.onclick = function() {
+              window.location.href = `edit.html`;
+            };
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function() {
+              if (confirm("Are you sure you want to delete this entry?")) {
+                fetch(`https://script.google.com/macros/s/AKfycbxEIjL8hJDZzfQTz9qzbGDJP6FSvKVPWO73l_U42aRGdLiuKg3PMOMezhXb4rLn50KeXg/exec?action=delete&id=${id}`, {
+                  method: 'POST'
+                }).then(response => {
+                  if (response.ok) {
+                    tr.remove();
+                  } else {
+                    alert("Delete failed");
+                  }
+                });
+              }
+            };
+            actionTd.appendChild(editButton);
+            actionTd.appendChild(deleteButton);
+            tr.appendChild(actionTd);
+            
             tableBody.appendChild(tr);
           });
-        } else {
-          alert("Error: " + xhr.responseText);
-        }
-      };
-      xhr.send();
+        });
     });
   </script>
 </body>
