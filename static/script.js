@@ -91,3 +91,33 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
   };
   xhr.send(data);
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+  const galleryItems = document.querySelectorAll(".gallery-item");
+
+  galleryItems.forEach(item => {
+    item.addEventListener("click", () => {
+      const imgSrc = item.querySelector("img").src;
+      const modal = document.createElement("div");
+      modal.classList.add("modal");
+      modal.innerHTML = `
+        <div class="modal-content">
+          <span class="close-btn">&times;</span>
+          <img src="${imgSrc}" alt="Modal Image">
+        </div>
+      `;
+      document.body.appendChild(modal);
+
+      const closeBtn = modal.querySelector(".close-btn");
+      closeBtn.addEventListener("click", () => {
+        document.body.removeChild(modal);
+      });
+
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          document.body.removeChild(modal);
+        }
+      });
+    });
+  });
+});

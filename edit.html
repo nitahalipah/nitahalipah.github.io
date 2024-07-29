@@ -1,88 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Message - Nita Halipah</title>
-  <link rel="stylesheet" href="static/style.css">
-</head>
-<body>
-  <header class="header">
-    <!-- Header content -->
-  </header>
-  <section class="edit-message" id="edit-message">
-    <h2 class="heading">Edit Message</h2>
-    <form id="edit-form">
-      <input type="hidden" id="message-id">
-      <div>
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" required>
-      </div>
-      <div>
-        <label for="email">Email Adress:</label>
-        <input type="email" id="email" required>
-      </div>
-      <div>
-        <label for="phone">Mobile Number:</label>
-        <input type="tel" id="phone" required>
-      </div>
-      <div>
-        <label for="subject">Email Subject:</label>
-        <input type="text" id="subject" required>
-      </div>
-      <div>
-        <label for="message">Your Message:</label>
-        <textarea id="message" required></textarea>
-      </div>
-      <div class="btn-box">
-        <button type="submit" class="btn">Update</button>
-      </div>
-    </form>
-  </section>
-  <footer class="footer">
-    <!-- Footer content -->
-  </footer>
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      var params = new URLSearchParams(window.location.search);
-      var messageId = params.get('id');
-      fetch(`https://script.google.com/macros/s/AKfycbxEIjL8hJDZzfQTz9qzbGDJP6FSvKVPWO73l_U42aRGdLiuKg3PMOMezhXb4rLn50KeXg/exec?action=get&id=${messageId}`)
-        .then(response => response.json())
-        .then(data => {
-          document.getElementById('message-id').value = data.id;
-          document.getElementById('name').value = data.name;
-          document.getElementById('email').value = data.email;
-          document.getElementById('phone').value = data.phone;
-          document.getElementById('subject').value = data.subject;
-          document.getElementById('message').value = data.message;
-        });
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Message - Nita Halipah</title>
+    <link rel="stylesheet" href="static/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <!-- Header content -->
+    </header>
+    <section class="edit-message" id="edit-message">
+      <h2 class="heading">Edit Message</h2>
+      <form id="edit-form">
+        <input type="hidden" id="message-id" />
+        <div>
+          <label for="name">Full Name:</label>
+          <input type="text" id="name" required />
+        </div>
+        <div>
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" required />
+        </div>
+        <div>
+          <label for="phone">Mobile Number:</label>
+          <input type="tel" id="phone" required />
+        </div>
+        <div>
+          <label for="subject">Email Subject:</label>
+          <input type="text" id="subject" required />
+        </div>
+        <div>
+          <label for="message">Your Message:</label>
+          <textarea id="message" required></textarea>
+        </div>
+        <div class="btn-box">
+          <button type="submit" class="btn">Update</button>
+        </div>
+      </form>
+    </section>
+    <footer class="footer">
+      <!-- Footer content -->
+    </footer>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var params = new URLSearchParams(window.location.search);
+        var messageId = params.get("id");
 
-      document.getElementById('edit-form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        var updatedData = {
-          action: 'update', // Add action to the payload
-          id: document.getElementById('message-id').value,
-          name: document.getElementById('name').value,
-          email: document.getElementById('email').value,
-          phone: document.getElementById('phone').value,
-          subject: document.getElementById('subject').value,
-          message: document.getElementById('message').value
-        };
-        fetch('https://script.google.com/macros/s/AKfycbxEIjL8hJDZzfQTz9qzbGDJP6FSvKVPWO73l_U42aRGdLiuKg3PMOMezhXb4rLn50KeXg/exec', {
-          method: 'POST',
-          body: JSON.stringify(updatedData),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        }).then(response => {
-          if (response.ok) {
-            window.location.href = 'messages.html';
-          } else {
-            alert('Update failed');
-          }
+        console.log("Fetching data for ID:", messageId); // Log ID being fetched
+
+        fetch(`https://script.google.com/macros/s/AKfycbyJJdVrl3PuNtrphWusr4Ob-1izdOMHvX6mwhVFZ4WmAwB59MfWnaenq-yqm8wupDEiAw/exec?action=get&id=${messageId}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Received data:", data); // Log received data
+            document.getElementById("message-id").value = data.id || "";
+            document.getElementById("name").value = data.name || "";
+            document.getElementById("email").value = data.email || "";
+            document.getElementById("phone").value = data.phone || "";
+            document.getElementById("subject").value = data.subject || "";
+            document.getElementById("message").value = data.message || "";
+          })
+          .catch((error) => {
+            console.error("Error fetching data:", error);
+            alert("Error fetching data");
+          });
+
+        document.getElementById("edit-form").addEventListener("submit", function (event) {
+          event.preventDefault();
+          var updatedData = {
+            action: "update",
+            id: document.getElementById("message-id").value,
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            phone: document.getElementById("phone").value,
+            subject: document.getElementById("subject").value,
+            message: document.getElementById("message").value,
+          };
+
+          console.log("Sending updated data:", updatedData); // Log the data being sent
+
+          fetch("https://script.google.com/macros/s/AKfycbzOsKXaDBbmh_uakI6GBVQS60FfqUF4UUatb7cd6rblRiKgTL2x9yegn7bE9zxM_SGi8g/exec", {
+            method: "POST",
+            body: new URLSearchParams(updatedData).toString(),
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+          })
+            .then((response) => {
+              if (!response.ok) {
+                return response.text().then((text) => {
+                  throw new Error(`Network response was not ok. Status: ${response.status}. Response: ${text}`);
+                });
+              }
+              return response.text();
+            })
+            .then((text) => {
+              console.log("Server response:", text); // Tambahkan untuk debugging
+              if (text.includes("Update successful")) {
+                window.location.href = "messages.html";
+              } else {
+                console.error("Update failed:", text);
+                alert("Update failed");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
         });
       });
-    });
-  </script>
-</body>
+    </script>
+  </body>
 </html>

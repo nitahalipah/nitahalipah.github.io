@@ -445,11 +445,11 @@ span {
 }
 
 .education-content .content h3 {
-  font-size: 2rem;
+  font-size: 20px;
 }
 
 .education-content .content p {
-  font-size: 1.6rem;
+  font-size: 15px;
   padding-top: 0.5rem;
 }
 
@@ -563,11 +563,11 @@ span {
 }
 
 .skills-column:nth-child(2) .skills-content .progress:nth-child(1) .bar span {
-  width: 95%;
+  width: 90%;
 }
 
 .skills-column:nth-child(2) .skills-content .progress:nth-child(2) .bar span {
-  width: 67%;
+  width: 90%;
 }
 
 .skills-column:nth-child(2) .skills-content .progress:nth-child(3) .bar span {
@@ -578,9 +578,72 @@ span {
   width: 60%;
 }
 
+.gallery {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.gallery .heading {
+  font-size: 5rem;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.gallery .heading span {
+  color: var(--second-text-color);
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr));
+  grid-gap: 20px; /* Jarak antar foto */
+  justify-content: center; /* Menyelaraskan gambar di tengah */
+}
+
+.gallery-item {
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  max-width: 300px; /* Membatasi lebar maksimal gambar */
+  margin: 10px auto; /* Menyelaraskan gambar di tengah */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 300px; /* Membatasi tinggi maksimal gambar */
+  object-fit: cover; /* Menjaga proporsi gambar */
+  object-position: center; /* Menempatkan gambar di tengah */
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .gallery-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom untuk layar sedang */
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-container {
+    grid-template-columns: 1fr; /* 1 kolom untuk layar kecil */
+  }
+}
+
+
 .contact {
   min-height: auto;
   padding-bottom: 7rem;
+  background-color: var(--second-bg-color);
 }
 
 .contact h2 {
@@ -593,6 +656,7 @@ span {
   max-width: 70rem;
   margin: 0 auto;
   text-align: center;
+  color: var(--main-color);
 }
 
 .contact form .input-box {
@@ -614,7 +678,7 @@ span {
   height: 100%;
   padding: 1.5rem;
   font-size: 1.6rem;
-  color: var(--text-color);
+  color: var(--main-color);
   background: transparent;
   border-radius: 0.6rem;
   border: 0.2rem solid var(--main-color);
@@ -622,7 +686,7 @@ span {
 
 .contact form .input-box .input-field input::placeholder,
 .contact form .textarea-field textarea::placeholder {
-  color: var(--text-color);
+  color: var(--main-color);
 }
 
 .contact form .focus {
@@ -667,7 +731,7 @@ span {
   align-items: center;
   flex-wrap: wrap;
   padding: 2rem 9%;
-  background: var(--second-bg-color);
+  background: var(--bg-color);
 }
 
 .footer-text,
@@ -677,7 +741,7 @@ span {
 
 .footer-text p {
   font-size: 1.6rem;
-  color: var(--main-color);
+  color: var(--text-color);
 }
 
 .footer-iconTop a {
@@ -700,7 +764,7 @@ span {
   left: 0;
   width: 0;
   height: 100%;
-  background: var(--second-bg-color);
+  background: var(--bg-color);
   z-index: -1;
   transition: 0.5s;
 }
@@ -1010,11 +1074,16 @@ table th, table td {
   padding: 12px;
   border: 1px solid #ddd;
   text-align: left;
+  font-size: 15px;
 }
 
 table th {
   background-color: var(--main-color);
-  color: var(--second-bg-color)
+  color: var(--second-bg-color);
+}
+
+table tbody {
+  font-size: 13px;
 }
 
 table tbody tr:nth-child(even) {
@@ -1027,24 +1096,14 @@ table tbody tr:hover {
   color: var(--main-color);
 }
 
-@media (max-width: 768px) {
-  table {
-      font-size: 14px;
-  }
-
-  table th, table td {
-      padding: 8px;
-  }
-}
-
 .messages .btn-box {
   text-align: center;
   margin-top: 20px;
 }
 
-.messages .btn-box .btn {
+.messages .btn-box .back-button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: var(--main-color);
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
@@ -1052,72 +1111,136 @@ table tbody tr:hover {
   cursor: pointer;
 }
 
-.messages .btn-box .btn:hover {
+.messages .btn-box .back-button:hover {
   background-color: #0056b3;
 }
 
+/* Responsive styles */
+@media (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
 
-.edit {
-  max-width: 600px;
-  margin: 50px auto;
+  table th, table td {
+    padding: 8px;
+  }
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin: 0 0 1rem 0;
+  }
+
+  tr:nth-child(even) {
+    background: none;
+  }
+
+  td {
+    border: none;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  td:before {
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    transform: translateY(-50%);
+    text-align: left;
+    font-weight: bold;
+  }
+
+  td:nth-of-type(1):before { content: "Full Name"; }
+  td:nth-of-type(2):before { content: "Email Address"; }
+  td:nth-of-type(3):before { content: "Mobile Number"; }
+  td:nth-of-type(4):before { content: "Email Subject"; }
+  td:nth-of-type(5):before { content: "Your Message"; }
+  td:nth-of-type(6):before { content: "Action"; }
+}
+
+@media (max-width: 480px) {
+  .messages h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+
+  .messages .btn-box .back-button {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+
+
+.edit-message {
+  background: #fff;
   padding: 20px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
   border-radius: 8px;
+  max-width: 500px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.edit h2 {
+.edit-message .heading {
+  font-size: 24px;
+  margin-bottom: 20px;
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
 }
 
-.edit form {
-  display: flex;
-  flex-direction: column;
+.edit-message form div {
+  margin-bottom: 15px;
 }
 
-.edit .input-box {
-  margin-bottom: 20px;
-}
-
-.edit .input-box label {
+.edit-message form label {
   display: block;
-  margin-bottom: 8px;
-  color: #555;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--main-color);
 }
 
-.edit .input-box input[type="text"],
-.edit .input-box input[type="email"],
-.edit .input-box input[type="tel"],
-.edit .input-box textarea {
+.edit-message form input[type="text"],
+.edit-message form input[type="email"],
+.edit-message form input[type="tel"],
+.edit-message form input[type="hidden"],
+.edit-message form textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 16px;
 }
 
-.edit .input-box textarea {
-  resize: vertical;
+.edit-message form textarea {
   height: 100px;
+  resize: vertical;
 }
 
-.edit .btn-box {
+.btn-box {
   text-align: center;
 }
 
-.edit .btn-box button {
-  padding: 10px 20px;
-  background-color: var(--bg-color);
+.btn {
+  background: #333;
   color: #fff;
+  padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  font-size: 18px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.edit .btn-box button:hover {
-  background-color: var(--main-color);
+.btn:hover {
+  background: #555;
 }
