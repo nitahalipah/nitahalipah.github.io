@@ -116,7 +116,7 @@ section {
 }
 
 .home-content .text-animate h3 {
-  font-size: 3.2rem;
+  font-size: 3rem;
   font-weight: 700;
   color: transparent;
   -webkit-text-stroke: 0.7px var(--main-color);
@@ -455,7 +455,7 @@ span {
 
 .skills {
   min-height: auto;
-  padding-bottom: 7rem;
+  padding-bottom: 10rem;
   background: var(--second-bg-color);
 }
 
@@ -547,36 +547,30 @@ span {
 }
 
 .skills-column:nth-child(1) .skills-content .progress:nth-child(1) .bar span {
-  width: 90%;
+  width: 75%;
 }
 
 .skills-column:nth-child(1) .skills-content .progress:nth-child(2) .bar span {
-  width: 80%;
-}
-
-.skills-column:nth-child(1) .skills-content .progress:nth-child(3) .bar span {
   width: 65%;
 }
 
-.skills-column:nth-child(1) .skills-content .progress:nth-child(4) .bar span {
-  width: 75%;
+.skills-column:nth-child(1) .skills-content .progress:nth-child(3) .bar span {
+  width: 50%;
 }
+
 
 .skills-column:nth-child(2) .skills-content .progress:nth-child(1) .bar span {
   width: 90%;
 }
 
 .skills-column:nth-child(2) .skills-content .progress:nth-child(2) .bar span {
-  width: 90%;
+  width: 95%;
 }
 
 .skills-column:nth-child(2) .skills-content .progress:nth-child(3) .bar span {
   width: 85%;
 }
 
-.skills-column:nth-child(2) .skills-content .progress:nth-child(4) .bar span {
-  width: 60%;
-}
 
 .gallery {
   padding: 50px 0;
@@ -813,7 +807,7 @@ span {
 
 section:nth-child(odd) .animate.scroll,
 .footer .animate.scroll {
-  background-color: var(--second-bg-color);
+  background-color: var(--bg-color);
 }
 
 .education .education-box .animate.scroll {
@@ -1056,13 +1050,15 @@ section:nth-child(odd) .animate.scroll,
   background-color: var(--second-bg-color);
 }
 
-.messages h2 {
+.messages h2.heading {
   text-align: center;
   margin-bottom: 20px;
-  color: var(--main-color);
+  background-color: var(--main-color);
+  color: var(--second-bg-color);
+  font-size: 2.7rem; /* Ukuran heading tetap besar */
 }
 
-table {
+#messages-table {
   width: 100%;
   border-collapse: collapse;
   margin: 0 auto;
@@ -1070,120 +1066,128 @@ table {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-table th, table td {
+#messages-table th, #messages-table td {
   padding: 12px;
   border: 1px solid #ddd;
   text-align: left;
   font-size: 15px;
 }
 
-table th {
+#messages-table th {
   background-color: var(--main-color);
   color: var(--second-bg-color);
 }
 
-table tbody {
+#messages-table tbody {
   font-size: 13px;
 }
 
-table tbody tr:nth-child(even) {
+#messages-table tbody tr:nth-child(even) {
   background-color: #f2f2f2;
   color: var(--main-color);
 }
 
-table tbody tr:hover {
+#messages-table tbody tr:hover {
   background-color: #ddd;
   color: var(--main-color);
 }
 
-.messages .btn-box {
+.btn-box {
   text-align: center;
   margin-top: 20px;
 }
 
-.messages .btn-box .back-button {
-  padding: 10px 20px;
+.btn-box .back-button {
+  padding: 10px 10px;
   background-color: var(--main-color);
   color: #fff;
   text-decoration: none;
   border-radius: 4px;
-  font-size: 18px;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
+
 }
 
-.messages .btn-box .back-button:hover {
-  background-color: #0056b3;
+.btn-box .back-button:hover {
+  background-color: var(--bg-color);
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  table {
-    font-size: 14px;
+  #messages-table {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    margin: 0;
+    box-shadow: none;
   }
 
-  table th, table td {
-    padding: 8px;
+  #messages-table thead {
+    display: none;
   }
 
-  table, thead, tbody, th, td, tr {
-    display: block;
+  #messages-table tbody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--second-bg-color);
   }
 
-  thead tr {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-
-  tr {
+  #messages-table tr {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     margin: 0 0 1rem 0;
+    overflow: hidden;
   }
 
-  tr:nth-child(even) {
-    background: none;
-  }
-
-  td {
+  #messages-table td {
+    display: flex;
+    justify-content: space-between;
     border: none;
     border-bottom: 1px solid #ddd;
+    padding: 10px;
+    box-sizing: border-box;
     position: relative;
-    padding-left: 50%;
-    text-align: right;
+    font-size: 14px;
+    color: var(--main-color);
   }
 
-  td:before {
-    position: absolute;
-    top: 50%;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    transform: translateY(-50%);
-    text-align: left;
+  #messages-table td::before {
+    content: attr(data-label);
     font-weight: bold;
+    background-color: var(--main-color);
+    color: var(--second-bg-color);
+    padding: 20px 10px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 45%;
+    box-sizing: border-box;
+    z-index: 1;
+    font-size: 14px;
+    white-space: nowrap;
   }
 
-  td:nth-of-type(1):before { content: "Full Name"; }
-  td:nth-of-type(2):before { content: "Email Address"; }
-  td:nth-of-type(3):before { content: "Mobile Number"; }
-  td:nth-of-type(4):before { content: "Email Subject"; }
-  td:nth-of-type(5):before { content: "Your Message"; }
-  td:nth-of-type(6):before { content: "Action"; }
+  #messages-table td {
+    padding-left: 50%; /* Ensure there's enough space for the label */
+  }
 }
 
 @media (max-width: 480px) {
-  .messages h2 {
-    font-size: 1.5rem;
+  .messages h2.heading {
+    padding-top: 20px;
+    font-size: 3rem; /* Ukuran heading tetap besar */
     margin-bottom: 15px;
   }
 
-  .messages .btn-box .back-button {
+  .btn-box .back-button {
     font-size: 16px;
     padding: 8px 16px;
   }
 }
-
-
 
 .edit-message {
   background: #fff;
@@ -1209,6 +1213,7 @@ table tbody tr:hover {
   margin-bottom: 5px;
   font-weight: bold;
   color: var(--main-color);
+  font-size: 12px;
 }
 
 .edit-message form input[type="text"],
@@ -1238,9 +1243,53 @@ table tbody tr:hover {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: 0.3s ease;
 }
 
 .btn:hover {
   background: #555;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .edit-message {
+    padding: 15px;
+    margin: 15px;
+    max-width: 90%;
+  }
+
+  .edit-message .heading {
+    padding-top: 20px;
+    font-size: 25px;
+  }
+
+  .edit-message form textarea {
+    height: 80px;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .edit-message {
+    padding: 10px;
+    margin: 10px;
+    max-width: 95%;
+  }
+
+  .edit-message .heading {
+    font-size: 18px;
+  }
+
+  .edit-message form textarea {
+    height: 60px;
+  }
+
+  .btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
 }
