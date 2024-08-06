@@ -261,19 +261,23 @@
       </form>
       <script>
         document.getElementById('contact-form').addEventListener('submit', function(event) {
-          event.preventDefault();
-          var formData = new FormData(this);
-          fetch('https://script.google.com/macros/s/AKfycbyUw8dsCtVOlsmdjvzKaoUolvmMprq-zPX8c594VJ1F3zGVAnUx8ggV-Dtaoa4AUqirLA/exec?action=submit', {
-            method: 'POST',
-            body: formData
-          }).then(response => {
-            if (response.ok) {
-              window.location.href = 'messages.html';
-            } else {
-              alert('Submission failed');
-            }
-          });
-        });
+  event.preventDefault();
+  
+  var formData = new FormData(this);
+  var xhr = new XMLHttpRequest();
+  
+  xhr.open('POST', 'https://script.google.com/macros/s/AKfycbyUw8dsCtVOlsmdjvzKaoUolvmMprq-zPX8c594VJ1F3zGVAnUx8ggV-Dtaoa4AUqirLA/exec?action=submit', true);
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      alert('Terimakasih, Pesan Anda Telah Kami Simpan!');
+      document.getElementById('contact-form').reset(); // Reset the form after submission
+    } else {
+      alert('Submission failed');
+    }
+  };
+  xhr.send(formData);
+});
+
       </script>
     </section>    
 
